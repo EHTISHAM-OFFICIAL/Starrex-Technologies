@@ -1,0 +1,319 @@
+/* =========================
+   STARREX TECHNOLOGIES
+   Main Stylesheet
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --black: #050505;
+    --navy: #0D1B2A;
+    --midnight: #142B45;
+    --steel: #243B53;
+    --white: #FFFFFF;
+    --grey: #B8C2CC;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+}
+
+/* NAVIGATION */
+
+/* LIQUID GLASS NAVBAR */
+
+header {
+    width: calc(100% - 28px);
+    margin: 12px auto 0;
+
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+
+    background: rgba(180, 190, 205, 0.126);
+
+    backdrop-filter: saturate(160%);
+    -webkit-backdrop-filter: saturate(160%);
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 40px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+nav {
+    max-width: 1400px;
+    margin: auto;
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: transparent;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+  height: 65px;
+  width: auto;
+  display: block;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+nav ul li a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--white);
+}
+
+.nav-button {
+    background: var(--navy);
+    padding: 13px 22px;
+    border: 1px solid var(--steel);
+    border-radius: 30px;
+    color: var(--white);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-button:hover {
+    background: var(--midnight);
+    transform: translateY(-3px);
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 650px;
+    padding: 150px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+
+}
+
+.hero > p:first-child {
+    color: var(--grey);
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    max-width: 850px;
+    font-size: clamp(40px, 6vw, 75px);
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.hero h1::selection {
+    background: var(--steel);
+}
+
+.hero > p:nth-of-type(2) {
+    color: var(--grey);
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-buttons a {
+    padding: 16px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--white);
+    border: 1px solid var(--steel);
+    transition: 0.3s;
+}
+
+.hero-buttons a:first-child {
+    background: var(--navy);
+}
+
+.hero-buttons a:hover {
+    background: var(--midnight);
+    transform: translateY(-3px);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .hero {
+        padding: 100px 7%;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+}
+
+/* OUR DIVISIONS */
+
+.divisions {
+    padding: 110px 8%;
+    background: rgba(13, 27, 42, 0.78);;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 65px;
+}
+
+.section-heading > p {
+    color: var(--grey);
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: clamp(30px, 4vw, 45px);
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.section-heading span {
+    color: var(--grey);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.division-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.division-card {
+    background: var(--black);
+    border: 1px solid var(--steel);
+    border-radius: 18px;
+    padding: 40px 30px;
+    transition: 0.3s;
+}
+
+.division-card:hover {
+    transform: translateY(-10px);
+    border-color: #526B85;
+    background: #101F30;
+    box-shadow: 0 15px 40px  rgba(13, 27, 42, 0.78);;
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--midnight);
+    color: var(--white);
+    font-size: 27px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.division-card h3 {
+    font-size: 21px;
+    margin-bottom: 18px;
+    color: var(--white);
+}
+
+.division-card p {
+    color: var(--grey);
+    font-size: 14px;
+    line-height: 1.9;
+    min-height: 105px;
+    margin-bottom: 25px;
+}
+
+.division-card a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.division-card a:hover {
+    color: var(--grey);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .division-container {
+        grid-template-columns: 1fr;
+    }
+
+    .division-card p {
+        min-height: auto;
+    }
+}
+/* ANIMATED WIREFRAME BACKGROUND */
+
+#wireframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Keep website content above the animation */
+
+header,
+main {
+    position: relative;
+    z-index: 1;
+}
