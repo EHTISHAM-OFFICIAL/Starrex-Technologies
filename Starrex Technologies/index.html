@@ -3,113 +3,166 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="theme-color" content="#07111f" />
     <title>Starrex Technologies | Digital Solutions</title>
-
     <meta
       name="description"
-      content="Starrex Technologies builds modern websites, custom software and digital solutions for businesses."
+      content="Starrex Technologies creates thoughtful digital products, modern websites and custom software that help ideas move forward."
     />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <canvas id="wireframe"></canvas>
-    <header>
-      <nav>
-        <a href="#home" class="logo">
-          <img
-            src="assets/images/starrex-logo.png"
-            alt="Starrex Technologies Logo"
-          />
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <canvas id="wireframe" aria-hidden="true"></canvas>
+
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="#home" class="logo" aria-label="Starrex Technologies home">
+          <img src="assets/images/starrex-logo.png" alt="Starrex Technologies" />
         </a>
 
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="primary-navigation">
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#services">What we do</a></li>
+          <li><a class="nav-link" href="#approach">Our approach</a></li>
         </ul>
 
-        <a href="#contact" class="nav-button">Get in Touch →</a>
+        <a href="#contact" class="nav-cta">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
       </nav>
     </header>
 
     <main>
-      <section id="home" class="hero">
-        <p>INNOVATE · AUTOMATE · GROW</p>
+      <section class="hero section-shell" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> INDEPENDENT DIGITAL STUDIO</div>
+          <h1>Ideas deserve<br />to move <span>forward.</span></h1>
+          <p class="hero-description">
+            We bring ideas to life through thoughtful digital products,
+            purposeful websites and software built around the way you work.
+          </p>
 
-        <h1>We Build Digital Solutions That Move Businesses Forward.</h1>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#services">
+              Explore what we do <span aria-hidden="true">↗</span>
+            </a>
+            <a class="text-link" href="#approach">
+              Get to know our approach <span aria-hidden="true">→</span>
+            </a>
+          </div>
 
-        <p>Web Development | Python Automation | Custom Software</p>
+          <div class="hero-note">
+            <span class="note-line"></span>
+            <span>Technology with intention. Built for what comes next.</span>
+          </div>
+        </div>
 
-        <div class="hero-buttons">
-          <a href="#projects">Explore Our Work</a>
-          <a href="#contact">Start a Project</a>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-orbit orbit-three"></div>
+          <div class="art-core">
+            <div class="core-mark">S<span>.</span></div>
+            <div class="core-caption">THINK / MAKE / MOVE</div>
+          </div>
+          <div class="orbit-point point-one"></div>
+          <div class="orbit-point point-two"></div>
+          <div class="orbit-point point-three"></div>
+          <div class="art-label label-top">DIGITAL CRAFT</div>
+          <div class="art-label label-bottom">BUILT TO EVOLVE <span>✳</span></div>
+        </div>
+
+        <div class="hero-index" aria-hidden="true"><span>01</span> / 03</div>
+      </section>
+
+      <section class="services section-shell" id="services">
+        <div class="section-intro">
+          <div>
+            <div class="eyebrow">WHAT WE BRING TO THE TABLE</div>
+            <h2>Good thinking.<br /><span>Useful technology.</span></h2>
+          </div>
+          <p>
+            From the first spark of an idea to the details that make it work,
+            we create digital solutions with a clear purpose.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-topline"><span>01 / PRODUCTS</span><span class="service-symbol">✳</span></div>
+            <div class="service-icon icon-product" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h3>Digital products</h3>
+            <p>Useful digital tools and resources designed to make everyday work simpler and smarter.</p>
+            <a href="#contact" class="card-link">Explore possibilities <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="service-card featured-card">
+            <div class="service-topline"><span>02 / WEB</span><span class="service-symbol">↗</span></div>
+            <div class="service-icon icon-web" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h3>Web development</h3>
+            <p>Responsive, considered websites that give businesses a confident and meaningful online presence.</p>
+            <a href="#contact" class="card-link">Build your presence <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-topline"><span>03 / SOFTWARE</span><span class="service-symbol">⌘</span></div>
+            <div class="service-icon icon-software" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h3>Software studio</h3>
+            <p>Custom software and practical automation shaped around real needs, not one-size-fits-all templates.</p>
+            <a href="#contact" class="card-link">Make it happen <span aria-hidden="true">↗</span></a>
+          </article>
         </div>
       </section>
-      <!-- OUR DIVISIONS -->
 
-      <section class="divisions" id="services">
-        <div class="section-heading">
-          <p>WHAT WE DO</p>
-          <h2>Technology That Works For You.</h2>
-          <span>
-            From ready-made digital products to custom software, we turn ideas
-            into practical digital solutions.
-          </span>
+      <section class="approach section-shell" id="approach">
+        <div class="approach-heading">
+          <div class="eyebrow">A CLEAR WAY FORWARD</div>
+          <h2>From first thought<br />to <span>something real.</span></h2>
         </div>
-
-        <div class="division-container">
-          <!-- DIGITAL PRODUCTS -->
-
-          <div class="division-card">
-            <div class="card-icon">✦</div>
-
-            <h3>Digital Products</h3>
-
-            <p>
-              Explore our collection of digital tools, resources and software
-              designed to simplify everyday tasks.
-            </p>
-
-            <a href="#products">Explore Products →</a>
-          </div>
-
-          <!-- WEB DEVELOPMENT -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Web Development</h3>
-
-            <p>
-              Modern, responsive and professional websites designed to establish
-              your business online.
-            </p>
-
-            <a href="#projects">View Our Work →</a>
-          </div>
-
-          <!-- SOFTWARE STUDIO -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Software Studio</h3>
-
-            <p>
-              Custom software, Python automation and intelligent solutions built
-              around your needs.
-            </p>
-
-            <a href="#contact">Start a Project →</a>
-          </div>
+        <div class="approach-steps">
+          <div class="approach-step"><span>01</span><div><h3>Understand</h3><p>Start with the idea, the people and the problem worth solving.</p></div></div>
+          <div class="approach-step"><span>02</span><div><h3>Shape</h3><p>Find a clear direction and turn the right ideas into a practical plan.</p></div></div>
+          <div class="approach-step"><span>03</span><div><h3>Build</h3><p>Design, develop and refine with care at every step.</p></div></div>
+          <div class="approach-step"><span>04</span><div><h3>Move forward</h3><p>Launch with confidence and keep making the experience better.</p></div></div>
         </div>
+      </section>
+
+      <section class="contact-strip section-shell" id="contact">
+        <div>
+          <div class="eyebrow">HAVE SOMETHING IN MIND?</div>
+          <h2>Let's make the next<br /><span>good thing happen.</span></h2>
+        </div>
+        <a class="button button-light" href="#services">
+          Explore our services <span aria-hidden="true">↗</span>
+        </a>
       </section>
     </main>
+
+    <footer class="site-footer section-shell">
+      <a href="#home" class="footer-brand">STARREX<span>.</span></a>
+      <p>Thoughtful technology. Forward motion.</p>
+      <span class="footer-copy">© <span id="current-year"></span> Starrex Technologies</span>
+    </footer>
 
     <script src="script.js"></script>
   </body>
