@@ -30,7 +30,11 @@
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
     <canvas id="wireframe" aria-hidden="true"></canvas>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
     <header class="site-header" id="top">
       <nav class="nav" aria-label="Main">
@@ -72,6 +76,17 @@
       <!-- HERO -->
       <section id="home" class="hero">
         <div class="hero-copy">
+          <p class="chip">
+            <span class="chip-dot" aria-hidden="true"></span>
+            <span class="chip-words">
+              <span>Web development</span>
+              <span>Python automation</span>
+              <span>Custom software</span>
+              <span>Digital products</span>
+              <span aria-hidden="true">Web development</span>
+            </span>
+          </p>
+
           <h1>We build digital solutions that move businesses forward.</h1>
           <p class="hero-lead">
             Websites, Python automation and custom software, designed and built
@@ -81,83 +96,52 @@
             <a class="button button-primary" href="#contact">Start a project</a>
             <a class="button button-ghost" href="#services">See what we do</a>
           </div>
-          <p class="hero-tagline">Innovate. Automate. Grow.</p>
         </div>
 
-        <div class="hero-orbit">
-          <svg
-            viewBox="40 125 540 350"
-            role="img"
-            aria-labelledby="orbit-title orbit-desc"
-            class="orbit"
-          >
-            <title id="orbit-title">Starrex at the centre of three orbits</title>
-            <desc id="orbit-desc">
-              Web development, Python automation and custom software orbit
-              around a central star.
-            </desc>
-            <defs>
-              <radialGradient id="core-glow">
-                <stop offset="0" stop-color="#EAF4FF" stop-opacity="0.95" />
-                <stop offset="0.35" stop-color="#7FA6D1" stop-opacity="0.35" />
-                <stop offset="1" stop-color="#5E8DBF" stop-opacity="0" />
-              </radialGradient>
-              <linearGradient id="ring" x1="0" y1="1" x2="1" y2="0">
-                <stop offset="0" stop-color="#5E8DBF" stop-opacity="0.05" />
-                <stop offset="0.6" stop-color="#7FA6D1" stop-opacity="0.55" />
-                <stop offset="1" stop-color="#D9ECFF" stop-opacity="0.9" />
-              </linearGradient>
-            </defs>
-
-            <circle cx="300" cy="300" r="170" fill="url(#core-glow)" />
-
-            <path
-              id="orbit-a"
-              class="ring"
-              d="M194.05 356.34A120 46 -28 1 0 405.95 243.66A120 46 -28 1 0 194.05 356.34Z"
-            />
-            <path
-              id="orbit-b"
-              class="ring"
-              d="M132.25 389.21A190 80 -28 1 0 467.75 210.79A190 80 -28 1 0 132.25 389.21Z"
-            />
-            <path
-              id="orbit-c"
-              class="ring ring-outer"
-              d="M79.28 417.38A250 110 -28 1 0 520.72 182.62A250 110 -28 1 0 79.28 417.38Z"
-            />
-
-            <g class="core">
-              <path
-                d="M300 262L308 292L338 300L308 308L300 338L292 308L262 300L292 292Z"
-                fill="#FFFFFF"
-              />
-            </g>
-
-            <g class="planet">
-              <animateMotion dur="26s" repeatCount="indefinite" begin="-6s">
-                <mpath href="#orbit-a" />
-              </animateMotion>
-              <circle r="7" />
-              <text x="16" y="5">Websites</text>
-            </g>
-            <g class="planet">
-              <animateMotion dur="40s" repeatCount="indefinite" begin="-22s">
-                <mpath href="#orbit-b" />
-              </animateMotion>
-              <circle r="7" />
-              <text x="16" y="5">Python automation</text>
-            </g>
-            <g class="planet">
-              <animateMotion dur="58s" repeatCount="indefinite" begin="-9s">
-                <mpath href="#orbit-c" />
-              </animateMotion>
-              <circle r="7" />
-              <text x="16" y="5">Custom software</text>
-            </g>
-          </svg>
+        <div class="hero-earth">
+          <div class="earth" id="earth" data-phase="globe">
+            <canvas id="globe" class="earth-globe" aria-hidden="true"></canvas>
+            <svg
+              id="worldmap"
+              class="earth-map"
+              viewBox="0 0 960 506"
+              role="img"
+              aria-label="World map with all seven continents highlighted"
+            ></svg>
+            <span class="earth-flash" aria-hidden="true"></span>
+          </div>
+          <p class="earth-caption">
+            <span>Digital solutions that work anywhere.</span>
+            <span class="earth-counter"><b id="earth-count">0</b> of 7 continents</span>
+          </p>
         </div>
       </section>
+
+      <!-- CAPABILITIES STRIP -->
+      <div class="marquee" aria-hidden="true">
+        <ul class="marquee-track">
+          <li>Websites</li>
+          <li>Web apps</li>
+          <li>Python scripts</li>
+          <li>Workflow automation</li>
+          <li>API integrations</li>
+          <li>Dashboards</li>
+          <li>Data tools</li>
+          <li>Digital products</li>
+          <li>Landing pages</li>
+          <li>Custom software</li>
+          <li>Websites</li>
+          <li>Web apps</li>
+          <li>Python scripts</li>
+          <li>Workflow automation</li>
+          <li>API integrations</li>
+          <li>Dashboards</li>
+          <li>Data tools</li>
+          <li>Digital products</li>
+          <li>Landing pages</li>
+          <li>Custom software</li>
+        </ul>
+      </div>
 
       <!-- SERVICES -->
       <section class="section" id="services">
@@ -170,29 +154,91 @@
         </div>
 
         <ul class="service-list">
-          <li class="service">
-            <h3>Digital products</h3>
-            <p>
+          <li class="service is-open" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="more-products"
+              >
+                Digital products
+              </button>
+            </h3>
+            <p class="service-desc">
               Tools, templates and software that take small, repetitive jobs off
               your plate.
             </p>
-            <a class="service-link" href="#products">Explore products</a>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-products">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Productivity tools</li>
+                  <li>Templates and starter kits</li>
+                  <li>Ready-to-use scripts</li>
+                  <li>Guides and resources</li>
+                </ul>
+                <a class="service-link" href="#products">Explore products</a>
+              </div>
+            </div>
           </li>
-          <li class="service">
-            <h3>Web development</h3>
-            <p>
+
+          <li class="service" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="more-web"
+              >
+                Web development
+              </button>
+            </h3>
+            <p class="service-desc">
               Fast, responsive websites that look professional and help your
               business get found and trusted online.
             </p>
-            <a class="service-link" href="#projects">View our work</a>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-web">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Responsive design</li>
+                  <li>Fast-loading pages</li>
+                  <li>Search-friendly structure</li>
+                  <li>Contact forms and integrations</li>
+                </ul>
+                <a class="service-link" href="#projects">View our work</a>
+              </div>
+            </div>
           </li>
-          <li class="service">
-            <h3>Software studio</h3>
-            <p>
+
+          <li class="service" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="more-software"
+              >
+                Software studio
+              </button>
+            </h3>
+            <p class="service-desc">
               Custom software and Python automation built around your
               processes, from small scripts to full applications.
             </p>
-            <a class="service-link" href="#contact">Start a project</a>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-software">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Python automation</li>
+                  <li>Custom web apps</li>
+                  <li>API integrations</li>
+                  <li>Dashboards and reporting</li>
+                </ul>
+                <a class="service-link" href="#contact">Start a project</a>
+              </div>
+            </div>
           </li>
         </ul>
       </section>
@@ -200,7 +246,7 @@
       <!-- PRODUCTS AND PROJECTS -->
       <section class="section section-work">
         <div class="work-grid">
-          <article class="panel" id="products">
+          <article class="panel" id="products" data-spot>
             <h2>Products</h2>
             <p>
               Our first digital products are in development. Tell us which tools
@@ -209,7 +255,7 @@
             <a class="button button-ghost" href="#contact">Ask about products</a>
           </article>
 
-          <article class="panel" id="projects">
+          <article class="panel" id="projects" data-spot>
             <h2>Projects</h2>
             <p>
               Case studies are being added. If you want to see relevant work
@@ -267,7 +313,7 @@
 
       <!-- CONTACT -->
       <section class="section" id="contact">
-        <div class="contact">
+        <div class="contact" data-spot>
           <div class="contact-intro">
             <h2>Start a project.</h2>
             <p>
@@ -313,6 +359,16 @@
       </div>
     </footer>
 
+    <a class="to-top" href="#home" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </a>
+
+    <script src="assets/vendor/d3-array.min.js"></script>
+    <script src="assets/vendor/d3-geo.min.js"></script>
+    <script src="assets/data/continents.js"></script>
+    <script src="assets/js/globe.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

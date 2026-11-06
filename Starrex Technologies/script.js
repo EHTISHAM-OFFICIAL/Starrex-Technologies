@@ -1,6 +1,7 @@
 /* =========================
    STARREX TECHNOLOGIES
    Interactions
+   (The hero globe and map live in assets/js/globe.js)
 ========================= */
 
 /* Set the address that receives messages from the contact form.
@@ -113,31 +114,32 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     start();
 })();
 
-/* ---------- Orbit animation respects reduced motion ---------- */
-
-(function orbit() {
-    const svg = document.querySelector(".orbit");
-    if (!svg || typeof svg.pauseAnimations !== "function") return;
-
-    function sync() {
-        if (reduceMotion.matches) svg.pauseAnimations();
-        else svg.unpauseAnimations();
-    }
-
-    reduceMotion.addEventListener("change", sync);
-    sync();
-})();
-
-/* ---------- Header state and mobile menu ---------- */
+/* ---------- Header, mobile menu, scroll progress, back to top, active link ---------- */
 
 (function header() {
     const bar = document.querySelector(".site-header");
     const toggle = document.querySelector(".nav-toggle");
     const links = document.getElementById("nav-links");
+    const progress = document.querySelector(".progress");
+    const toTop = document.querySelector(".to-top");
     if (!bar || !toggle || !links) return;
 
+    let ticking = false;
+
+    function update() {
+        ticking = false;
+        const y = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+
+        bar.classList.toggle("is-scrolled", y > 24);
+        if (progress) progress.style.setProperty("--p", max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
+        if (toTop) toTop.classList.toggle("is-visible", y > 700);
+    }
+
     function onScroll() {
-        bar.classList.toggle("is-scrolled", window.scrollY > 24);
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
     }
 
     function setOpen(open) {
@@ -158,7 +160,130 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     });
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    window.addEventListener("resize", onScroll);
+    update();
+
+    // Highlight the nav link for the section on screen
+    if ("IntersectionObserver" in window) {
+        const map = new Map();
+        links.querySelectorAll('a[href^="#"]').forEach((a) => {
+            const target = document.querySelector(a.getAttribute("href"));
+            if (target && !a.parentElement.classList.contains("nav-links-cta")) map.set(target, a);
+        });
+
+        const spy = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    map.forEach((a) => a.classList.remove("is-active"));
+                    const link = map.get(entry.target);
+                    if (link) link.classList.add("is-active");
+                });
+            },
+            { rootMargin: "-45% 0px -50% 0px" }
+        );
+        map.forEach((_, target) => spy.observe(target));
+    }
+})();
+
+/* ---------- Cursor glow and card spotlight ---------- */
+
+(function pointerEffects() {
+    const glow = document.querySelector(".cursor-glow");
+    const fine = window.matchMedia("(pointer: fine)");
+    let queued = false;
+    let x = 0;
+    let y = 0;
+
+    function paint() {
+        queued = false;
+        if (glow) {
+            glow.style.setProperty("--gx", x + "px");
+            glow.style.setProperty("--gy", y + "px");
+        }
+    }
+
+    document.addEventListener(
+        "pointermove",
+        (event) => {
+            if (!fine.matches) return;
+            x = event.clientX;
+            y = event.clientY;
+            if (glow && !reduceMotion.matches) {
+                glow.classList.add("is-on");
+                if (!queued) {
+                    queued = true;
+                    requestAnimationFrame(paint);
+                }
+            }
+
+            const card = event.target.closest && event.target.closest("[data-spot]");
+            if (card) {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--mx", event.clientX - rect.left + "px");
+                card.style.setProperty("--my", event.clientY - rect.top + "px");
+            }
+        },
+        { passive: true }
+    );
+
+    document.addEventListener("pointerleave", () => glow && glow.classList.remove("is-on"));
+})();
+
+/* ---------- Expandable services ---------- */
+
+(function services() {
+    document.querySelectorAll(".service-toggle").forEach((button) => {
+        button.addEventListener("click", () => {
+            const item = button.closest(".service");
+            const open = !item.classList.contains("is-open");
+            item.classList.toggle("is-open", open);
+            button.setAttribute("aria-expanded", String(open));
+        });
+    });
+})();
+
+/* ---------- Reveal on scroll, and the process line ---------- */
+
+(function reveals() {
+    if (!("IntersectionObserver" in window) || reduceMotion.matches) {
+        document.querySelectorAll(".steps").forEach((s) => s.classList.add("is-drawn"));
+        return;
+    }
+
+    const targets = document.querySelectorAll(
+        ".section-head, .service, .panel, .steps li, .about h2, .about-body, .contact"
+    );
+
+    const seen = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-in");
+                seen.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    targets.forEach((node, i) => {
+        node.classList.add("reveal");
+        const siblings = node.parentElement ? Array.from(node.parentElement.children) : [];
+        node.style.setProperty("--d", Math.min(siblings.indexOf(node), 4) * 0.09 + "s");
+        seen.observe(node);
+    });
+
+    const line = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-drawn");
+                line.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.35 }
+    );
+    document.querySelectorAll(".steps").forEach((s) => line.observe(s));
 })();
 
 /* ---------- Contact form ---------- */
