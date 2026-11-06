@@ -1,80 +1,196 @@
-/* STARREX ANIMATED 3D WIREFRAME */
+/* STARREX — AMBIENT CONSTELLATION + NAVIGATION */
+(() => {
+  const canvas = document.getElementById("wireframe");
+  const menuButton = document.querySelector(".menu-toggle");
+  const navigation = document.querySelector(".nav-links");
+  const yearLabel = document.getElementById("current-year");
 
-const canvas = document.getElementById("wireframe");
-const ctx = canvas.getContext("2d");
+  if (yearLabel) yearLabel.textContent = new Date().getFullYear();
 
-let width, height;
-let time = 0;
+  // Accessible mobile navigation
+  if (menuButton && navigation) {
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation menu");
+      navigation.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+    };
 
-function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+      navigation.classList.toggle("is-open", !isOpen);
+      document.body.classList.toggle("menu-open", !isOpen);
+    });
 
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+    navigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
 
-function drawWireframe() {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
 
-    ctx.clearRect(0, 0, width, height);
+    document.addEventListener("click", (event) => {
+      if (
+        menuButton.getAttribute("aria-expanded") === "true" &&
+        !navigation.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+  }
 
-    const spacing = 35;
-    const rows = 24;
-    const cols = Math.ceil(width / spacing) + 4;
+  // Highlight the navigation item for the section currently in view
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-    const points = [];
+  if ("IntersectionObserver" in window && sections.length && navLinks.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => {
+            const active = link.getAttribute("href") === "#" + entry.target.id;
+            link.classList.toggle("active", active);
+          });
+        });
+      },
+      { rootMargin: "-35% 0px -55% 0px" }
+    );
 
-    for (let y = 0; y <= rows; y++) {
+    sections.forEach((section) => sectionObserver.observe(section));
+  }
 
-        points[y] = [];
+  // Soft animated constellation: a lighter replacement for the old dense wireframe.
+  if (!canvas) return;
 
-        for (let x = 0; x <= cols; x++) {
+  const context = canvas.getContext("2d");
+  if (!context) return;
 
-            const px = (x - 2) * spacing;
-            const py = (y - rows / 2) * spacing;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let width = 0;
+  let height = 0;
+  let pixelRatio = 1;
+  let particles = [];
+  let animationFrame = 0;
+  let isVisible = !document.hidden;
 
-            const wave =
-                Math.sin(px * 0.008 + time) * 35 +
-                Math.cos(py * 0.018 + time) * 20 +
-                Math.sin((px + py) * 0.012 + time) * 15;
+  const random = (min, max) => Math.random() * (max - min) + min;
 
-            const perspective = 0.75 + (y / rows) * 0.5;
+  function createParticles() {
+    const area = width * height;
+    const count = Math.min(88, Math.max(28, Math.round(area / 19000)));
 
-            points[y][x] = {
-                x: width / 2 + (px - width / 2) * perspective,
-                y: height / 2 + py * perspective + wave
-            };
+    particles = Array.from({ length: count }, () => ({
+      x: random(0, width),
+      y: random(0, height),
+      radius: random(0.7, 1.8),
+      speedX: random(-0.12, 0.12),
+      speedY: random(-0.1, 0.1),
+      phase: random(0, Math.PI * 2)
+    }));
+  }
+
+  function resizeCanvas() {
+    pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    createParticles();
+
+    if (reducedMotion.matches) drawFrame(0, false);
+  }
+
+  function drawFrame(time, moveParticles = true) {
+    context.clearRect(0, 0, width, height);
+
+    const connectionDistance = width < 700 ? 112 : 148;
+    const pulse = 0.72 + Math.sin(time * 0.00045) * 0.12;
+
+    for (let i = 0; i < particles.length; i += 1) {
+      const particle = particles[i];
+
+      if (moveParticles) {
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        if (particle.x < -12) particle.x = width + 12;
+        if (particle.x > width + 12) particle.x = -12;
+        if (particle.y < -12) particle.y = height + 12;
+        if (particle.y > height + 12) particle.y = -12;
+      }
+
+      const shimmer = 0.55 + Math.sin(time * 0.001 + particle.phase) * 0.2;
+      context.beginPath();
+      context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      context.fillStyle = `rgba(133, 193, 237, ${shimmer * pulse})`;
+      context.fill();
+
+      for (let j = i + 1; j < particles.length; j += 1) {
+        const other = particles[j];
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < connectionDistance) {
+          const opacity = (1 - distance / connectionDistance) * 0.17;
+          context.beginPath();
+          context.moveTo(particle.x, particle.y);
+          context.lineTo(other.x, other.y);
+          context.strokeStyle = `rgba(104, 170, 220, ${opacity})`;
+          context.lineWidth = 0.7;
+          context.stroke();
         }
+      }
+    }
+  }
+
+  function animate(time) {
+    if (!isVisible || reducedMotion.matches) {
+      animationFrame = 0;
+      return;
     }
 
-    ctx.lineWidth = 0.8;
+    drawFrame(time);
+    animationFrame = window.requestAnimationFrame(animate);
+  }
 
-    for (let y = 0; y <= rows; y++) {
+  function startAnimation() {
+    if (!isVisible || reducedMotion.matches || animationFrame) return;
+    animationFrame = window.requestAnimationFrame(animate);
+  }
 
-        for (let x = 0; x <= cols; x++) {
+  function stopAnimation() {
+    if (!animationFrame) return;
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+  }
 
-            const point = points[y][x];
+  window.addEventListener("resize", resizeCanvas, { passive: true });
+  document.addEventListener("visibilitychange", () => {
+    isVisible = !document.hidden;
+    if (isVisible) startAnimation();
+    else stopAnimation();
+  });
 
-            ctx.beginPath();
-            ctx.strokeStyle = "rgba(65, 115, 165, 0.35)";
+  if (typeof reducedMotion.addEventListener === "function") {
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) {
+        stopAnimation();
+        drawFrame(0, false);
+      } else {
+        startAnimation();
+      }
+    });
+  }
 
-            if (x < cols) {
-                ctx.moveTo(point.x, point.y);
-                ctx.lineTo(points[y][x + 1].x, points[y][x + 1].y);
-            }
-
-            if (y < rows) {
-                ctx.moveTo(point.x, point.y);
-                ctx.lineTo(points[y + 1][x].x, points[y + 1][x].y);
-            }
-
-            ctx.stroke();
-        }
-    }
-
-    time += 0.008;
-
-    requestAnimationFrame(drawWireframe);
-}
-
-drawWireframe();
+  resizeCanvas();
+  startAnimation();
+})();
