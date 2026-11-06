@@ -3,113 +3,315 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050A12" />
 
     <title>Starrex Technologies | Digital Solutions</title>
-
     <meta
       name="description"
-      content="Starrex Technologies builds modern websites, custom software and digital solutions for businesses."
+      content="Starrex Technologies builds modern websites, Python automation and custom software for businesses."
     />
+    <meta property="og:title" content="Starrex Technologies" />
+    <meta
+      property="og:description"
+      content="Web development, Python automation and custom software for businesses."
+    />
+    <meta property="og:type" content="website" />
 
+    <link rel="icon" type="image/svg+xml" href="assets/images/starrex-mark.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Michroma&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <canvas id="wireframe"></canvas>
-    <header>
-      <nav>
-        <a href="#home" class="logo">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <canvas id="wireframe" aria-hidden="true"></canvas>
+
+    <header class="site-header" id="top">
+      <nav class="nav" aria-label="Main">
+        <a href="#home" class="brand" aria-label="Starrex Technologies, home">
           <img
-            src="assets/images/starrex-logo.png"
-            alt="Starrex Technologies Logo"
+            class="brand-mark"
+            src="assets/images/starrex-mark.svg"
+            alt=""
+            width="44"
+            height="44"
           />
+          <span class="brand-word">Starrex</span>
         </a>
 
-        <ul>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
           <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#products">Products</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
+          <li class="nav-links-cta"><a href="#contact">Get in touch</a></li>
         </ul>
 
-        <a href="#contact" class="nav-button">Get in Touch →</a>
+        <a href="#contact" class="button button-small nav-cta">Get in touch</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main">
+      <!-- HERO -->
       <section id="home" class="hero">
-        <p>INNOVATE · AUTOMATE · GROW</p>
+        <div class="hero-copy">
+          <h1>We build digital solutions that move businesses forward.</h1>
+          <p class="hero-lead">
+            Websites, Python automation and custom software, designed and built
+            around how your business actually works.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Start a project</a>
+            <a class="button button-ghost" href="#services">See what we do</a>
+          </div>
+          <p class="hero-tagline">Innovate. Automate. Grow.</p>
+        </div>
 
-        <h1>We Build Digital Solutions That Move Businesses Forward.</h1>
+        <div class="hero-orbit">
+          <svg
+            viewBox="40 125 540 350"
+            role="img"
+            aria-labelledby="orbit-title orbit-desc"
+            class="orbit"
+          >
+            <title id="orbit-title">Starrex at the centre of three orbits</title>
+            <desc id="orbit-desc">
+              Web development, Python automation and custom software orbit
+              around a central star.
+            </desc>
+            <defs>
+              <radialGradient id="core-glow">
+                <stop offset="0" stop-color="#EAF4FF" stop-opacity="0.95" />
+                <stop offset="0.35" stop-color="#7FA6D1" stop-opacity="0.35" />
+                <stop offset="1" stop-color="#5E8DBF" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="ring" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#5E8DBF" stop-opacity="0.05" />
+                <stop offset="0.6" stop-color="#7FA6D1" stop-opacity="0.55" />
+                <stop offset="1" stop-color="#D9ECFF" stop-opacity="0.9" />
+              </linearGradient>
+            </defs>
 
-        <p>Web Development | Python Automation | Custom Software</p>
+            <circle cx="300" cy="300" r="170" fill="url(#core-glow)" />
 
-        <div class="hero-buttons">
-          <a href="#projects">Explore Our Work</a>
-          <a href="#contact">Start a Project</a>
+            <path
+              id="orbit-a"
+              class="ring"
+              d="M194.05 356.34A120 46 -28 1 0 405.95 243.66A120 46 -28 1 0 194.05 356.34Z"
+            />
+            <path
+              id="orbit-b"
+              class="ring"
+              d="M132.25 389.21A190 80 -28 1 0 467.75 210.79A190 80 -28 1 0 132.25 389.21Z"
+            />
+            <path
+              id="orbit-c"
+              class="ring ring-outer"
+              d="M79.28 417.38A250 110 -28 1 0 520.72 182.62A250 110 -28 1 0 79.28 417.38Z"
+            />
+
+            <g class="core">
+              <path
+                d="M300 262L308 292L338 300L308 308L300 338L292 308L262 300L292 292Z"
+                fill="#FFFFFF"
+              />
+            </g>
+
+            <g class="planet">
+              <animateMotion dur="26s" repeatCount="indefinite" begin="-6s">
+                <mpath href="#orbit-a" />
+              </animateMotion>
+              <circle r="7" />
+              <text x="16" y="5">Websites</text>
+            </g>
+            <g class="planet">
+              <animateMotion dur="40s" repeatCount="indefinite" begin="-22s">
+                <mpath href="#orbit-b" />
+              </animateMotion>
+              <circle r="7" />
+              <text x="16" y="5">Python automation</text>
+            </g>
+            <g class="planet">
+              <animateMotion dur="58s" repeatCount="indefinite" begin="-9s">
+                <mpath href="#orbit-c" />
+              </animateMotion>
+              <circle r="7" />
+              <text x="16" y="5">Custom software</text>
+            </g>
+          </svg>
         </div>
       </section>
-      <!-- OUR DIVISIONS -->
 
-      <section class="divisions" id="services">
-        <div class="section-heading">
-          <p>WHAT WE DO</p>
-          <h2>Technology That Works For You.</h2>
-          <span>
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="section-head">
+          <h2>Technology that works for you.</h2>
+          <p>
             From ready-made digital products to custom software, we turn ideas
-            into practical digital solutions.
-          </span>
+            into practical tools your business can use every day.
+          </p>
         </div>
 
-        <div class="division-container">
-          <!-- DIGITAL PRODUCTS -->
-
-          <div class="division-card">
-            <div class="card-icon">✦</div>
-
-            <h3>Digital Products</h3>
-
+        <ul class="service-list">
+          <li class="service">
+            <h3>Digital products</h3>
             <p>
-              Explore our collection of digital tools, resources and software
-              designed to simplify everyday tasks.
+              Tools, templates and software that take small, repetitive jobs off
+              your plate.
             </p>
+            <a class="service-link" href="#products">Explore products</a>
+          </li>
+          <li class="service">
+            <h3>Web development</h3>
+            <p>
+              Fast, responsive websites that look professional and help your
+              business get found and trusted online.
+            </p>
+            <a class="service-link" href="#projects">View our work</a>
+          </li>
+          <li class="service">
+            <h3>Software studio</h3>
+            <p>
+              Custom software and Python automation built around your
+              processes, from small scripts to full applications.
+            </p>
+            <a class="service-link" href="#contact">Start a project</a>
+          </li>
+        </ul>
+      </section>
 
-            <a href="#products">Explore Products →</a>
+      <!-- PRODUCTS AND PROJECTS -->
+      <section class="section section-work">
+        <div class="work-grid">
+          <article class="panel" id="products">
+            <h2>Products</h2>
+            <p>
+              Our first digital products are in development. Tell us which tools
+              would save you time and we will build with you in mind.
+            </p>
+            <a class="button button-ghost" href="#contact">Ask about products</a>
+          </article>
+
+          <article class="panel" id="projects">
+            <h2>Projects</h2>
+            <p>
+              Case studies are being added. If you want to see relevant work
+              before you decide, ask and we will share it.
+            </p>
+            <a class="button button-ghost" href="#contact">Request examples</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section" id="process">
+        <div class="section-head">
+          <h2>How a project runs.</h2>
+          <p>Four clear steps, with you involved at each one.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Talk</h3>
+            <p>We learn what your business needs and what success looks like.</p>
+          </li>
+          <li>
+            <h3>Plan</h3>
+            <p>You get a clear scope, timeline and price before work starts.</p>
+          </li>
+          <li>
+            <h3>Build</h3>
+            <p>We design and develop, sharing progress so nothing surprises you.</p>
+          </li>
+          <li>
+            <h3>Launch and support</h3>
+            <p>We release it, hand it over properly and stay available after.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="about">
+          <h2>A small studio with a clear focus.</h2>
+          <div class="about-body">
+            <p>
+              Starrex Technologies is a digital studio that builds websites,
+              Python automation and custom software for businesses that want
+              technology that is practical and well made.
+            </p>
+            <p>
+              We keep the process simple: listen first, build carefully and
+              explain things in plain language.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="contact">
+          <div class="contact-intro">
+            <h2>Start a project.</h2>
+            <p>
+              Tell us what you want to build or fix. We reply with next steps,
+              not a sales pitch.
+            </p>
           </div>
 
-          <!-- WEB DEVELOPMENT -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Web Development</h3>
-
-            <p>
-              Modern, responsive and professional websites designed to establish
-              your business online.
-            </p>
-
-            <a href="#projects">View Our Work →</a>
-          </div>
-
-          <!-- SOFTWARE STUDIO -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Software Studio</h3>
-
-            <p>
-              Custom software, Python automation and intelligent solutions built
-              around your needs.
-            </p>
-
-            <a href="#contact">Start a Project →</a>
-          </div>
+          <form class="form" id="contact-form" novalidate>
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>
+              What do you need?
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send message</button>
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
         </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a href="#home" class="brand" aria-label="Starrex Technologies, back to top">
+          <img
+            class="brand-mark"
+            src="assets/images/starrex-mark.svg"
+            alt=""
+            width="36"
+            height="36"
+          />
+          <span class="brand-word">Starrex</span>
+        </a>
+        <p>Innovate. Automate. Grow.</p>
+        <p class="footer-copy">&copy; 2026 Starrex Technologies</p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>
