@@ -3,114 +3,372 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050A12" />
 
     <title>Starrex Technologies | Digital Solutions</title>
-
     <meta
       name="description"
-      content="Starrex Technologies builds modern websites, custom software and digital solutions for businesses."
+      content="Starrex Technologies builds modern websites, Python automation and custom software for businesses."
     />
+    <meta property="og:title" content="Starrex Technologies" />
+    <meta
+      property="og:description"
+      content="Web development, Python automation and custom software for businesses."
+    />
+    <meta property="og:type" content="website" />
 
+    <link rel="icon" type="image/svg+xml" href="assets/images/starrex-mark.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Michroma&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <canvas id="wireframe"></canvas>
-    <header>
-      <nav>
-        <a href="#home" class="logo">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <canvas id="wireframe" aria-hidden="true"></canvas>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <nav class="nav" aria-label="Main">
+        <a href="#home" class="brand" aria-label="Starrex Technologies, home">
           <img
-            src="assets/images/starrex-logo.png"
-            alt="Starrex Technologies Logo"
+            class="brand-mark"
+            src="assets/images/starrex-mark.svg"
+            alt=""
+            width="44"
+            height="44"
           />
+          <span class="brand-word">Starrex</span>
         </a>
 
-        <ul>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="nav-toggle-bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
           <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#products">Products</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
+          <li class="nav-links-cta"><a href="#contact">Get in touch</a></li>
         </ul>
 
-        <a href="#contact" class="nav-button">Get in Touch →</a>
+        <a href="#contact" class="button button-small nav-cta">Get in touch</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main">
+      <!-- HERO -->
       <section id="home" class="hero">
-        <p>INNOVATE · AUTOMATE · GROW</p>
+        <div class="hero-copy">
+          <p class="chip">
+            <span class="chip-dot" aria-hidden="true"></span>
+            <span class="chip-words">
+              <span>Web development</span>
+              <span>Python automation</span>
+              <span>Custom software</span>
+              <span>Digital products</span>
+              <span aria-hidden="true">Web development</span>
+            </span>
+          </p>
 
-        <h1>We Build Digital Solutions That Move Businesses Forward.</h1>
+          <h1>We build digital solutions that move businesses forward.</h1>
+          <p class="hero-lead">
+            Websites, Python automation and custom software, designed and built
+            around how your business actually works.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Start a project</a>
+            <a class="button button-ghost" href="#services">See what we do</a>
+          </div>
+        </div>
 
-        <p>Web Development | Python Automation | Custom Software</p>
-
-        <div class="hero-buttons">
-          <a href="#projects">Explore Our Work</a>
-          <a href="#contact">Start a Project</a>
+        <div class="hero-earth">
+          <div class="earth" id="earth" data-phase="globe">
+            <canvas id="globe" class="earth-globe" aria-hidden="true"></canvas>
+            <svg
+              id="worldmap"
+              class="earth-map"
+              viewBox="0 0 960 506"
+              role="img"
+              aria-label="World map with all seven continents highlighted"
+            ></svg>
+            <span class="earth-flash" aria-hidden="true"></span>
+          </div>
+          <p class="earth-caption">
+            <span>Digital solutions that work anywhere.</span>
+            <span class="earth-counter"><b id="earth-count">0</b> of 7 continents</span>
+          </p>
         </div>
       </section>
-      <!-- OUR DIVISIONS -->
 
-      <section class="divisions" id="services">
-        <div class="section-heading">
-          <p>WHAT WE DO</p>
-          <h2>Technology That Works For You.</h2>
-          <span>
+      <!-- CAPABILITIES STRIP -->
+      <div class="marquee" aria-hidden="true">
+        <ul class="marquee-track">
+          <li>Websites</li>
+          <li>Web apps</li>
+          <li>Python scripts</li>
+          <li>Workflow automation</li>
+          <li>API integrations</li>
+          <li>Dashboards</li>
+          <li>Data tools</li>
+          <li>Digital products</li>
+          <li>Landing pages</li>
+          <li>Custom software</li>
+          <li>Websites</li>
+          <li>Web apps</li>
+          <li>Python scripts</li>
+          <li>Workflow automation</li>
+          <li>API integrations</li>
+          <li>Dashboards</li>
+          <li>Data tools</li>
+          <li>Digital products</li>
+          <li>Landing pages</li>
+          <li>Custom software</li>
+        </ul>
+      </div>
+
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="section-head">
+          <h2>Technology that works for you.</h2>
+          <p>
             From ready-made digital products to custom software, we turn ideas
-            into practical digital solutions.
-          </span>
+            into practical tools your business can use every day.
+          </p>
         </div>
 
-        <div class="division-container">
-          <!-- DIGITAL PRODUCTS -->
-
-          <div class="division-card">
-            <div class="card-icon">✦</div>
-
-            <h3>Digital Products</h3>
-
-            <p>
-              Explore our collection of digital tools, resources and software
-              designed to simplify everyday tasks.
+        <ul class="service-list">
+          <li class="service is-open" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="more-products"
+              >
+                Digital products
+              </button>
+            </h3>
+            <p class="service-desc">
+              Tools, templates and software that take small, repetitive jobs off
+              your plate.
             </p>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-products">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Productivity tools</li>
+                  <li>Templates and starter kits</li>
+                  <li>Ready-to-use scripts</li>
+                  <li>Guides and resources</li>
+                </ul>
+                <a class="service-link" href="#products">Explore products</a>
+              </div>
+            </div>
+          </li>
 
-            <a href="#products">Explore Products →</a>
+          <li class="service" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="more-web"
+              >
+                Web development
+              </button>
+            </h3>
+            <p class="service-desc">
+              Fast, responsive websites that look professional and help your
+              business get found and trusted online.
+            </p>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-web">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Responsive design</li>
+                  <li>Fast-loading pages</li>
+                  <li>Search-friendly structure</li>
+                  <li>Contact forms and integrations</li>
+                </ul>
+                <a class="service-link" href="#projects">View our work</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="service" data-spot>
+            <h3 class="service-title">
+              <button
+                class="service-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="more-software"
+              >
+                Software studio
+              </button>
+            </h3>
+            <p class="service-desc">
+              Custom software and Python automation built around your
+              processes, from small scripts to full applications.
+            </p>
+            <span class="service-plus" aria-hidden="true"></span>
+            <div class="service-more" id="more-software">
+              <div class="service-more-inner">
+                <ul class="chips">
+                  <li>Python automation</li>
+                  <li>Custom web apps</li>
+                  <li>API integrations</li>
+                  <li>Dashboards and reporting</li>
+                </ul>
+                <a class="service-link" href="#contact">Start a project</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PRODUCTS AND PROJECTS -->
+      <section class="section section-work">
+        <div class="work-grid">
+          <article class="panel" id="products" data-spot>
+            <h2>Products</h2>
+            <p>
+              Our first digital products are in development. Tell us which tools
+              would save you time and we will build with you in mind.
+            </p>
+            <a class="button button-ghost" href="#contact">Ask about products</a>
+          </article>
+
+          <article class="panel" id="projects" data-spot>
+            <h2>Projects</h2>
+            <p>
+              Case studies are being added. If you want to see relevant work
+              before you decide, ask and we will share it.
+            </p>
+            <a class="button button-ghost" href="#contact">Request examples</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section" id="process">
+        <div class="section-head">
+          <h2>How a project runs.</h2>
+          <p>Four clear steps, with you involved at each one.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Talk</h3>
+            <p>We learn what your business needs and what success looks like.</p>
+          </li>
+          <li>
+            <h3>Plan</h3>
+            <p>You get a clear scope, timeline and price before work starts.</p>
+          </li>
+          <li>
+            <h3>Build</h3>
+            <p>We design and develop, sharing progress so nothing surprises you.</p>
+          </li>
+          <li>
+            <h3>Launch and support</h3>
+            <p>We release it, hand it over properly and stay available after.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="about">
+          <h2>A small studio with a clear focus.</h2>
+          <div class="about-body">
+            <p>
+              Starrex Technologies is a digital studio that builds websites,
+              Python automation and custom software for businesses that want
+              technology that is practical and well made.
+            </p>
+            <p>
+              We keep the process simple: listen first, build carefully and
+              explain things in plain language.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="contact" data-spot>
+          <div class="contact-intro">
+            <h2>Start a project.</h2>
+            <p>
+              Tell us what you want to build or fix. We reply with next steps,
+              not a sales pitch.
+            </p>
           </div>
 
-          <!-- WEB DEVELOPMENT -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Web Development</h3>
-
-            <p>
-              Modern, responsive and professional websites designed to establish
-              your business online.
-            </p>
-
-            <a href="#projects">View Our Work →</a>
-          </div>
-
-          <!-- SOFTWARE STUDIO -->
-
-          <div class="division-card">
-            <div class="card-icon">⌘</div>
-
-            <h3>Software Studio</h3>
-
-            <p>
-              Custom software, Python automation and intelligent solutions built
-              around your needs.
-            </p>
-
-            <a href="#contact">Start a Project →</a>
-          </div>
+          <form class="form" id="contact-form" novalidate>
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>
+              What do you need?
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send message</button>
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
         </div>
       </section>
     </main>
 
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a href="#home" class="brand" aria-label="Starrex Technologies, back to top">
+          <img
+            class="brand-mark"
+            src="assets/images/starrex-mark.svg"
+            alt=""
+            width="36"
+            height="36"
+          />
+          <span class="brand-word">Starrex</span>
+        </a>
+        <p>Innovate. Automate. Grow.</p>
+        <p class="footer-copy">&copy; 2026 Starrex Technologies</p>
+      </div>
+    </footer>
+
+    <a class="to-top" href="#home" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </a>
+
+    <script src="assets/vendor/d3-array.min.js"></script>
+    <script src="assets/vendor/d3-geo.min.js"></script>
+    <script src="assets/data/continents.js"></script>
+    <script src="assets/js/globe.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
