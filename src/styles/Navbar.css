@@ -196,3 +196,102 @@
     transition: none;
   }
 }
+
+/* Keep the brand bar at the top; place the navigation links in a separate bottom dock. */
+.navbar-links {
+  position: fixed;
+  top: auto;
+  right: auto;
+  bottom: 18px;
+  left: 50%;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 22px);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 10px 16px;
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: 16px;
+  background: rgba(15, 10, 27, 0.9);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%);
+}
+
+.navbar-links a {
+  padding: 9px 10px;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .navbar-links,
+  .navbar-links.is-open {
+    position: fixed;
+    top: auto;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 6px;
+    width: auto;
+    max-width: none;
+    padding: 10px;
+    border: 1px solid rgba(167, 139, 250, 0.24);
+    border-radius: 16px;
+    background: rgba(12, 8, 22, 0.96);
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .navbar-links a,
+  .navbar-links .navbar-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    margin: 0;
+    padding: 11px 5px;
+    border-radius: 9px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .navbar-links .navbar-contact {
+    gap: 4px;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-links,
+  .navbar-links.is-open {
+    right: 8px;
+    left: 8px;
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .navbar-links a,
+  .navbar-links .navbar-contact {
+    padding: 10px 3px;
+    font-size: 11px;
+  }
+}
