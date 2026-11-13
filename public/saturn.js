@@ -830,11 +830,11 @@ earthTilt.rotation.x = THREE.MathUtils.degToRad(0);
   }
  
   /* =========================================================
-     PLANET SWITCHING (Saturn <-> Earth)
+     PLANET SWITCHING (Earth <-> Saturn)
      presence: 1 = in place, 0 = gone
-     - Saturn leaves by swiping off to the left, returns from the left.
-     - Earth arrives from far behind (tiny, deep in the scene) and
-       settles where Saturn was; it recedes the same way when leaving.
+     - Earth recedes smoothly into the distance when leaving Home.
+     - Saturn sweeps into the Projects composition from the left.
+     - The reverse transition uses the same coordinated timing.
   ========================================================= */
   const easeInOutCubic = (k) =>
     k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
