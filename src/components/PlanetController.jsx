@@ -5,7 +5,7 @@ function PlanetController() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const planet = pathname.startsWith("/projects") ? "earth" : "saturn";
+    const planet = pathname.startsWith("/projects") ? "saturn" : "earth";
     if (window.StarrexPlanets) window.StarrexPlanets.show(planet);
   }, [pathname]);
 
