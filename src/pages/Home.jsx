@@ -1,7 +1,13 @@
 import Hero from "../sections/Hero";
+import ServicesSection from "../sections/Services";
 
 function Home() {
-  return <Hero />;
+  return (
+    <main>
+      <Hero />
+      <ServicesSection />
+    </main>
+  );
 }
 
 export default Home;
