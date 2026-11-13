@@ -32,11 +32,11 @@
 }
 
 .navbar-links {
-  position: fixed;
-  top: auto;
-  right: auto;
-  bottom: max(22px, env(safe-area-inset-bottom));
+  position: absolute;
+  top: 50%;
   left: 50%;
+  right: auto;
+  bottom: auto;
   z-index: 1100;
   display: flex;
   align-items: center;
@@ -54,7 +54,7 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .navbar-links a {
@@ -99,9 +99,19 @@
   }
 
   .navbar-links {
-    bottom: max(16px, env(safe-area-inset-bottom));
-    gap: clamp(12px, 4vw, 22px);
-    max-width: calc(100vw - 20px);
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    gap: clamp(10px, 3vw, 18px);
+    max-width: 100%;
+    transform: none;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    gap: 12px;
   }
 
   .navbar-links a {
