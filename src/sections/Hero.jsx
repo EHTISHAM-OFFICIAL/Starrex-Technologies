@@ -1,15 +1,14 @@
+import { Link } from "react-router-dom";
 import "../styles/Hero.css";
 
 function Hero() {
   return (
     <section className="hero">
-
-      <div className="hero-glow"></div>
+      <div className="hero-glow" aria-hidden="true" />
 
       <div className="hero-content">
-
         <div className="hero-badge">
-          <span className="status-dot"></span>
+          <span className="status-dot" />
           INNOVATION MEETS TECHNOLOGY
         </div>
 
@@ -22,28 +21,26 @@ function Hero() {
         </h1>
 
         <p className="hero-description">
-          We design and develop Web Applications, Powerful Custom Software, Digital Products & Intelligent Solutions
-          that move businesses forward.
+          We design and develop web applications, custom software, digital
+          products, and intelligent solutions that move businesses forward.
         </p>
 
         <div className="hero-buttons">
-          <a href="#services" className="hero-primary">
-            Explore Our Services <span>↗</span>
-          </a>
+          <Link to="/services" className="hero-primary">
+            Explore Our Services <span aria-hidden="true">↗</span>
+          </Link>
 
-          <a href="#projects" className="hero-secondary">
+          <Link to="/projects" className="hero-secondary">
             View Our Work
-          </a>
+          </Link>
         </div>
 
-        <div className="hero-bottom">
+        <div className="hero-bottom" aria-label="Our approach">
           <span>INNOVATE.</span>
           <span>AUTOMATE.</span>
           <span>EVOLVE.</span>
         </div>
-
       </div>
-
     </section>
   );
 }
