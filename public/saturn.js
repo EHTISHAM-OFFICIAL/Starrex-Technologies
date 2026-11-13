@@ -1,6 +1,6 @@
 /* =========================================================
    STARREX – Planet background (Three.js)
-   Saturn (home) + Earth (projects), both fully procedural.
+   Earth (home) + Saturn (projects), both fully procedural.
    No texture downloads needed.
  
    Self-contained classic script (no import statements), so it
@@ -8,8 +8,8 @@
    Requires the global THREE (r128 UMD build) and <canvas id="planet">.
  
    Page switching API (called from React):
-     window.StarrexPlanets.show("saturn")  // Saturn swipes in from the left
-     window.StarrexPlanets.show("earth")   // Earth flies in from far behind
+     window.StarrexPlanets.show("earth")   // Earth settles into the Home composition
+     window.StarrexPlanets.show("saturn")  // Saturn sweeps into the Projects composition
  
    Stability:
    - WebGL availability protection
@@ -844,9 +844,9 @@ earthTilt.rotation.x = THREE.MathUtils.degToRad(0);
   const planets = {
     saturn: {
       group,
-      presence: 1,
+      presence: 0,
       tween: null,
-      enter: { delay: 0.5, duration: 1.7, ease: easeInOutCubic },
+      enter: { delay: 0.18, duration: 1.85, ease: easeInOutCubic },
       leave: { delay: 0, duration: 1.3, ease: easeInOutCubic },
       place(p) {
         const away = (1 - p) * (base.x + viewHalfW + 7);
@@ -856,9 +856,9 @@ earthTilt.rotation.x = THREE.MathUtils.degToRad(0);
  
     earth: {
       group: earthGroup,
-      presence: 0,
+      presence: 1,
       tween: null,
-      enter: { delay: 0.45, duration: 2.6, ease: easeOutCubic },
+      enter: { delay: 0.12, duration: 2.15, ease: easeOutCubic },
       leave: { delay: 0, duration: 1.5, ease: easeInCubic },
       place(p) {
         earthGroup.position.set(cur.x, cur.y, -(1 - p) * 38);
@@ -866,7 +866,7 @@ earthTilt.rotation.x = THREE.MathUtils.degToRad(0);
     },
   };
  
-  let currentPlanet = "saturn";
+  let currentPlanet = "earth";
   let firstShowCall = true;
  
   function startTween(planet, to, cfg) {
@@ -1080,7 +1080,7 @@ cloudMat.uniforms.uRot.value += speed * 0.2 * 1.35;
     });
     viewportController.resize();
  
-    // Start in place (no fly-in from the origin on the first frame).
+    // Start on the Home composition (Earth) without a first-frame jump.
     cur.set(base.x, base.y);
     applyPlanetTransforms();
  
