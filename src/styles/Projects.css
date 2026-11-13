@@ -1,0 +1,243 @@
+/* PROJECTS PAGE */
+
+.projects-page {
+  padding: 150px 8% 100px;
+  min-height: 80vh;
+  position: relative;
+  background: transparent;
+}
+
+.projects-hero {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.projects-hero h1 {
+  font-size: clamp(55px, 7vw, 90px);
+  line-height: 1.05;
+  letter-spacing: -4px;
+  margin: 25px 0;
+  font-weight: 700;
+}
+
+.projects-hero h1 span {
+  color: var(--purple-light);
+}
+
+.projects-hero p {
+  max-width: 600px;
+  margin: auto; 
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  line-height: 1.9;
+  opacity: 0.75;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .projects-page {
+    padding: 120px 6% 80px;
+  }
+
+  .projects-hero h1 {
+    font-size: 52px;
+    letter-spacing: -2px;
+  }
+
+  .projects-hero p {
+    font-size: 13px;
+  }
+}
+/* PROJECT SHOWCASE */
+
+.projects-container {
+  max-width: 1200px;
+  margin: 130px auto 0;
+}
+
+.projects-section-heading {
+  margin-bottom: 45px;
+}
+
+.projects-section-heading h2 {
+  font-size: clamp(30px, 4vw, 45px);
+  margin-top: 15px;
+  letter-spacing: -1.5px;
+}
+
+.projects-section-heading h2 span {
+  color: var(--purple-light);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  transition: 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(167, 139, 250, 0.5);
+}
+
+/* PREVIEW AREA */
+
+.project-preview {
+  min-height: 260px;
+  padding: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(139, 92, 246, 0.2),
+      transparent 65%
+    ),
+    linear-gradient(145deg, #171126, #090711);
+}
+
+.project-preview-number {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.project-preview-title {
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 700;
+  text-align: center;
+  color: var(--purple-light);
+}
+
+.project-status {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 10px;
+  color: white;
+  opacity: 0.6;
+}
+
+/* PROJECT INFORMATION */
+
+.project-info {
+  padding: 28px;
+}
+
+.project-category {
+  font-size: 11px;
+  color: var(--purple-light);
+  letter-spacing: 1px;
+}
+
+.project-info h3 {
+  font-size: 23px;
+  margin: 13px 0;
+}
+
+.project-info > p {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.project-tech span {
+  padding: 7px 11px;
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--purple-light);
+  font-size: 10px;
+}
+
+.project-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.project-arrow {
+  color: var(--purple-light);
+  font-size: 20px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-container {
+    margin-top: 90px;
+  }
+
+  .project-preview {
+    min-height: 210px;
+  }
+
+  .project-info {
+    padding: 23px;
+  }
+}
+/* THE FOLDS WEBSITE PREVIEW */
+
+.project-preview.has-image {
+  min-height: 260px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.project-preview-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-preview-image {
+  transform: scale(1.04);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .project-preview.has-image {
+    min-height: 210px;
+  }
+}

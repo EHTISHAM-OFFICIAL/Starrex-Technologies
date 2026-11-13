@@ -1,0 +1,74 @@
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 5%;
+  width: 90%;
+  height: 76px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(15, 10, 27, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 18px;
+
+  z-index: 1000;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar-links a {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--purple-light);
+}
+
+.navbar-contact {
+  padding: 12px 22px;
+  border-radius: 10px;
+
+  background: var(--purple);
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  border: 1px solid rgba(167, 139, 250, 0.35);
+
+  transition: all 0.3s ease;
+}
+
+.navbar-contact:hover {
+  background: var(--purple-dark);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.navbar-contact span {
+  margin-left: 8px;
+}
